@@ -1,8 +1,8 @@
 const express = require("express");
 const si = require("systeminformation");
-const GpioLib = require("onoff");
+const Gpio = require("onoff").Gpio;
 
-const led = new GpioLib.Gpio(2, "out");
+const led = new Gpio(2, "out");
 const app = express();
 
 let buttonState = false;
