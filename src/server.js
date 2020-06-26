@@ -1,14 +1,20 @@
 const express = require("express");
 const si = require("systeminformation");
-const Gpio = require("onoff").Gpio;
+const Gpio = require("pigpio").Gpio;
 
 const led = new Gpio(2, "out");
 const app = express();
 
 let buttonState = false;
+let val = 25;
 
 app.get("*", (req, res) => {
-  console.log('new request');
+  if (val < 250) {
+    val += 25;
+  } else {
+    val = 0;
+  }
+  console.log("new request", val);
   buttonState = !buttonState;
   si.cpuTemperature((data) => {
     res.send({
@@ -16,7 +22,7 @@ app.get("*", (req, res) => {
     });
     res.end();
   });
-  led.write(buttonState ? Gpio.HIGH : Gpio.Low);
+  led.write(val);
 });
 
 const PORT = process.env.PORT || 8081;
