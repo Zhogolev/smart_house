@@ -9,7 +9,7 @@ let buttonState = false;
 
 app.get("*", (req, res) => {
   buttonState = !buttonState;
-  led.writeSync(buttonState ? Gpio.HIGH : Gpio.Low);
+  led.write(buttonState ? Gpio.HIGH : Gpio.Low);
   si.cpuTemperature((data) => {
     res.send({
       hello: req.query,
