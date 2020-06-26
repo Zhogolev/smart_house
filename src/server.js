@@ -6,17 +6,13 @@ const led = new Gpio(2, {mode: Gpio.OUTPUT});
 const app = express();
 
 let buttonState = false;
-let val = 25;
 
 app.get("/led", (req, res) => {
 
   console.log(req.query);
 
-  if (val < 250) {
-    val += 25;
-  } else {
-    val = 0;
-  }
+  let val = req.query['led_value'] ?? 0;
+
   console.log("new request", val);
   buttonState = !buttonState;
   si.cpuTemperature((data) => {
