@@ -22,7 +22,7 @@ app.get("*", (req, res) => {
     });
     res.end();
   });
-  led.write(val);
+  led.pwmWrite(val);
 });
 
 const PORT = process.env.PORT || 8081;
