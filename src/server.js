@@ -8,6 +8,7 @@ const app = express();
 let buttonState = false;
 
 app.get("*", (req, res) => {
+  console.log('new request');
   buttonState = !buttonState;
   led.write(buttonState ? Gpio.HIGH : Gpio.Low);
   si.cpuTemperature((data) => {
