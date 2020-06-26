@@ -8,7 +8,10 @@ const app = express();
 let buttonState = false;
 let val = 25;
 
-app.get("*", (req, res) => {
+app.get("/led", (req, res) => {
+
+  console.log(req.query);
+
   if (val < 250) {
     val += 25;
   } else {
@@ -18,7 +21,7 @@ app.get("*", (req, res) => {
   buttonState = !buttonState;
   si.cpuTemperature((data) => {
     res.send({
-      hello: req.query,
+      hello: data,
     });
     res.end();
   });
