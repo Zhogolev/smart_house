@@ -14,6 +14,8 @@ app.get("/led", (req, res) => {
   let val = req.query['led_value'];
   if(val == null){
     val = 0;
+  } else if(val > 255){
+    val = 255;
   }
 
   console.log("new request", val);
