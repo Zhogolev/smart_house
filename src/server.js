@@ -11,7 +11,10 @@ app.get("/led", (req, res) => {
 
   console.log(req.query);
 
-  let val = req.query['led_value'] ?? 0;
+  let val = req.query['led_value'];
+  if(val == null){
+    val = 0;
+  }
 
   console.log("new request", val);
   buttonState = !buttonState;
