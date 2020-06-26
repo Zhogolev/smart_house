@@ -2,7 +2,7 @@ const express = require("express");
 const si = require("systeminformation");
 const Gpio = require("pigpio").Gpio;
 
-const led = new Gpio(2, "out");
+const led = new Gpio(2, {mode: Gpio.OUTPUT});
 const app = express();
 
 let buttonState = false;
