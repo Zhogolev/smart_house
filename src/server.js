@@ -1,8 +1,8 @@
-import express from "express";
-import * as si from "systeminformation";
-import { Gpio } from "onoff";
+const express = require("express");
+const si = require("systeminformation");
+const GpioLib = require("onoff");
 
-const led = new Gpio(2, "out");
+const led = new GpioLib.Gpio(2, "out");
 const app = express();
 
 let buttonState = false;
