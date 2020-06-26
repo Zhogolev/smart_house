@@ -10,13 +10,13 @@ let buttonState = false;
 app.get("*", (req, res) => {
   console.log('new request');
   buttonState = !buttonState;
-  led.write(buttonState ? Gpio.HIGH : Gpio.Low);
   si.cpuTemperature((data) => {
     res.send({
       hello: req.query,
     });
     res.end();
   });
+  led.write(buttonState ? Gpio.HIGH : Gpio.Low);
 });
 
 const PORT = process.env.PORT || 8081;
