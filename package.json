@@ -12,10 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "onoff": "^6.0.0",
     "pigpio": "^3.2.3",
-    "raspi": "^6.0.1",
-    "raspi-pwm": "^6.0.0",
     "systeminformation": "^4.26.4"
   },
   "devDependencies": {
