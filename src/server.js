@@ -3,6 +3,8 @@ const si = require("systeminformation");
 const Gpio = require("pigpio").Gpio;
 
 const led = new Gpio(2, {mode: Gpio.OUTPUT});
+led.pwmFrequency(50);
+
 const app = express();
 
 
@@ -33,7 +35,7 @@ app.get("/led", (req, res) => {
     });
     res.end();
   });
-  led.hardwarePwmWrite(200, val);
+  led.pwmWrite(val);
 });
 
 const PORT = process.env.PORT || 8081;
