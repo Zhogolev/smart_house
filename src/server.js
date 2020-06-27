@@ -16,6 +16,7 @@ app.get("/led", (req, res) => {
 
   let val = req.query['led_value'];
   if(integersOnlyRegExp.test(val)){
+    print('here the test');
     return res.end('cant_get_led_value');
   };
 
