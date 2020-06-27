@@ -5,6 +5,9 @@ const Gpio = require("pigpio").Gpio;
 const led = new Gpio(2, {mode: Gpio.OUTPUT});
 const app = express();
 
+
+const integersOnlyRegExp = /^\d+$/;
+
 let buttonState = false;
 
 app.get("/led", (req, res) => {
@@ -12,6 +15,10 @@ app.get("/led", (req, res) => {
   console.log(req.query);
 
   let val = req.query['led_value'];
+  if(integersOnlyRegExp.test(val)){
+    return res.end('cant_get_led_value');
+  };
+
   if(val == null){
     val = 0;
   } else if(val > 255){
