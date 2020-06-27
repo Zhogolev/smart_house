@@ -1,6 +1,6 @@
 const WebSocket = require("ws");
 const Gpio = require("pigpio").Gpio;
-const led_1_gpio = new Gpio(2, {mode: Gpio.OUTPUT});
+const led_1_gpio = new Gpio(2, { mode: Gpio.OUTPUT });
 led_1_gpio.pwmFrequency(50);
 const port = process.env.PORT || 8082;
 
@@ -19,7 +19,8 @@ server.on("connection", (client) => {
   client.on("message", (event) => {
     const jsEvent = JSON.parse(event);
     if (jsEvent["message"] == SET_LED_1_MESSAGE) {
-      led1 = jsEvent["value"] ?? 0;
+      led1 = jsEvent["value"];
+      led1 = led1 == null ? 0 : led1;
       server.clients.forEach((client) =>
         client.send(prepareMessage(EVENT_SEND_LED_1, led1))
       );
