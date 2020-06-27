@@ -33,7 +33,7 @@ app.get("/led", (req, res) => {
     });
     res.end();
   });
-  led.hardwarePwmWrite(50, val);
+  led.hardwarePwmWrite(200, val);
 });
 
 const PORT = process.env.PORT || 8081;
