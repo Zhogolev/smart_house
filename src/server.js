@@ -2,7 +2,7 @@ const express = require("express");
 const si = require("systeminformation");
 const Gpio = require("pigpio").Gpio;
 
-const led = new Gpio(2, {mode: Gpio.OUTPUT, timeout: 20});
+const led = new Gpio(2, {mode: Gpio.OUTPUT});
 const app = express();
 
 
@@ -33,7 +33,7 @@ app.get("/led", (req, res) => {
     });
     res.end();
   });
-  led.pwmWrite(val);
+  led.hardwarePwmWrite(50, val);
 });
 
 const PORT = process.env.PORT || 8081;
