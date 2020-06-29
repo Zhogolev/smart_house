@@ -1,7 +1,7 @@
 const WebSocket = require("ws");
 const Gpio = require("pigpio").Gpio;
 const led_1_gpio = new Gpio(2, { mode: Gpio.OUTPUT });
-led_1_gpio.pwmFrequency(50);
+led_1_gpio.pwmFrequency(488);
 const port = process.env.PORT || 8082;
 
 let server = new WebSocket.Server({
